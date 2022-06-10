@@ -3,18 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bytebank.Titular;
 
 namespace bytebank
 {
     public class ContaCorrente
     {
-        public string titularNome;
-        public string titularCpf;
-        public string titularProfissao;
-        public string conta;
-        public int numeroAgencia;
-        public string nomeAgencia;
-        public double saldo = 10000.99;
+        public Cliente Titular { get; set; }
+        public string Conta { get; set; }
+        public int NumeroAgencia { get; set; }
+        public string NomeAgencia { get; set; }
+        private double saldo = 10000.99;
+
+        public double Saldo
+        {
+            get
+            {
+                return saldo;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    return;
+                }
+                else
+                {
+                    saldo = value;
+                }
+            }
+        }
 
         public bool Sacar(double valor)
         {
@@ -60,5 +78,8 @@ namespace bytebank
                 Console.WriteLine("Error: Valor inválido");
             }
         }
+
+
     }
+
 }
